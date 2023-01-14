@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width", initial-scale="1.0">
+    <title>Portfolio Website</title>
+    <link rel="stylesheet" href="style.css"
+    <script src="https://kit.fontawesome.com/6cd14c1ab4.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="header">
+        <div class="container">
+            <nav>
+                <img src="images/logo.png" class="logo">
+                <ul id="sidemenu">
+                    <li><a href="#header">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <i class="fas fa-times" onclick="closemenu()"></i> 
+                </ul>
+                <i class="fas fa-bars" onclick="openmenu()"></i>
+            </nav>
+            <div class="header-text">
+                <p>Software Engineer</p>
+                <h1>Hi, I'm <span>Mahedi</span><br> From Bangladesh</h1>
+            </div>
+            
+        </div>
+    </div>
+
+    <!----------about-------------->
+
+    <div id="about">
+        <div class="container">
+            <div class="row">
+                <div class="about-col-1">
+                    <img src="images/user.jpeg" alt="">
+                </div>
+                <div class="about-col-2">
+                    <h1 class="sub-title">About Me</h1>
+                    <p class="sub-pera">Building a challenging, competitive and reward-oriented career with integrity, punctuality and hardworking.Experienced Software Engineer with a demonstrated history of working in the computer software industry. Skilled in iOS, SQL, PHP, C++, and Android. Strong engineering professional graduated from Military Institute of Science and Technology (MIST).</p>
+                    
+                    <div class="tab-titles">
+                        <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
+                        <p class="tab-links" onclick="opentab('experience')">Experience</p>
+                        <p class="tab-links" onclick="opentab('education')">Education</p>
+                    </div>
+
+                    <div class="tab-contents active-tab" id="skills">
+                        <ul>
+                            <li><span>App Development</span><br>Building Native Android/iOS apps using Java, Swift, Android Studio and Xcode</li>
+                            <li><span>Web Development</span><br>Web app Development using React and Node.js</li>
+                            <li><span>UI/UX Design</span><br>Designing Web/App interfaces using Figma</li>
+                        </ul>
+                    </div>
+
+                    <div class="tab-contents" id="experience">
+                        <ul>
+                            <li><span>June 1, 2019 – Present</span><br>Assistant Programmer at Telecommunication, ICT Infrastructure, Human Resource Development, and Technical Capacity Building(TIHDTCB) Project under the Ministry of Defence(MOD)</li>
+                            <li><span>August 1, 2017 - October 20, 2018</span><br>Senior Mobile App Developer at Business Accelerate BD Ltd.</li>
+                            <li><span>February 1, 2017 – July 30,2017</span><br>Junior Software Engineer at Xenial IT Ltd.</li>
+                            <li><span>November 1, 2015 – December 30, 2015</span><br>Internship at Bangladesh Computer Council (BCC)</li>
+                        </ul>
+                    </div>
+
+                    <div class="tab-contents" id="education">
+                        <div style="overflow-x:auto;">
+                            <table class="tb">
+                                <tr>
+                                  <th>QUALIFICATIONS</th>
+                                  <th>INSTITUATION</th>
+                                  <th>YEAR</th>
+                                  <th>GRADE</th>
+                                </tr>
+                                <tr>
+                                  <td>M.Sc. in Information and Communication Technology</td>
+                                  <td>Bangladesh University of Engineering Technology (BUET)</td>
+                                  <td>2023<br>(Expected)</td>
+                                  <td>3.40<br>(Scale-4.00)</td>
+                                </tr>
+                                <tr>
+                                    <td>B.Sc. in Computer Science and Engineering</td>
+                                    <td>Military Institute of Science and Technology (MIST)</td>
+                                    <td>2017</td>
+                                    <td>3.27<br>(Scale-4.00)</td>
+                                </tr>
+                                    <tr>
+                                        <td>Higher Secondary Certificate (H.S.C)</td>
+                                        <td>Chittagong College, Chittagong</td>
+                                        <td>2012</td>
+                                        <td>5.00<br>(Scale-5.00)</td>
+                                </tr>
+                                <tr>
+                                    <td>Secondary School Certificate (S.S.C)</td>
+                                    <td>B.N School & College, Chittagong</td>
+                                    <td>2010</td>
+                                    <td>5.00<br>(Scale-5.00)</td>
+                                </tr>
+                              </table>
+                        </div>
+  
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!----------services-------------->
+
+<div id="services">
+    <div class="container">
+        <h1 class="sub-title">My Services</h1>
+        <div class="services-list">
+            <div>
+                <i class="fa-brands fa-app-store"></i>
+                <h2>App Development</h2>
+                <p>I offer a full cycle of application design, integration and management services. Whether it is a consumer oriented app or a transformative enterprise-class solution, the entire mobile app development process from ideation and concept to delivery, and to ongoing support.</p>
+                <br>    
+                <ul>
+                    <li> Custom iOS and Android apps development</li>
+                    <li> Native and cross-platform solutions</li>
+                    <li> UI/UX design</li>
+                    <li> Consulting and prototyping</li>
+                    <li> Automated QA and testing</li>
+                    <li> Power management, notification and geofencing</li>
+                    <li> Embedded Android &amp; AOSP customizations</li>
+                    <li> Maintenance and post-warranty support</li>
+                </ul>
+            </div>
+
+            <div>
+                <i class="fa-solid fa-globe"></i>
+                <h2>Web Development</h2>
+                <p>Here are just some of the ways that I stand out as an individual when it comes to what my experience is with websites and creating digital experiences.</p>
+                <br>
+                <ul>
+                    <li> Agile web design and development methodology</li>
+                    <li> Award winning web solutions and sites</li>
+                    <li> Competitive rates for web design and development talent</li>
+                    <li> Friendly, open, communicative and collaborative way of working with clients</li>
+                    <li> Proven track record of successful web design and development project delivery</li>
+                    <li> Rigorous quality assurance (QA) testing before “Go-Live”</li>
+                    <li> Shorter development times translating to lower costs</li>
+                </ul>
+            </div>
+
+            <div>
+                <i class="fa-sharp fa-solid fa-paintbrush"></i>
+                <h2>UI/UX Design</h2>
+                <p>UI/UX is not just a process of designing an interface for your website or application. You won’t allow damnable design and imperfect experience in your program. Therefore, experts go through step by step process, consultations between the UI developer and the UX developer, research, analysis, prototype, testing and so on. I have specialized in this sector and streamline the process through experience and high consideration. Here is a little showcase of my service types and facilities.</p>
+                <br>
+                <ul>
+                    <li> Software UI/UX design</li>
+                    <li> Mobile application UI/UX design</li>
+                    <li> Ecommerce website UI/UX design</li>
+                    <li> List UI design</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <!----------portfolio-------------->
+    <div id="portfolio">
+        <div class="container">
+            <h1 class="sub-title">My Work</h1>
+            <div class="work-list">
+                <div class="work">
+                    <img src="images/work-1.png" alt="">
+                    <div class="layer">
+                        <h3>Healthcare Pharmacy App</h3>
+                        <p>Operating within both traditional and digital media channels, Wellbeing Pharmacy App serves the needs of health care products through highly trained staffs who are there to serve each customer with great service and value. This App helps customer to know more about health care products and its prices. The aim of this app is "Order health care products from anywhere in Bangladesh and receive them at customer's doorstep".</p>
+                        <p>Download it from play store to explore the features of this App</p>
+                        <a href="https://play.google.com/store/apps/details?id=com.wellbeing.wellbeingpharmacy" target="_blank"><i class="fa-solid fa-up-right-from-square"></i></a>
+                    </div>
+                </div>
+
+                <div class="work">
+                    <img src="images/work-2.png" alt="">
+                    <div class="layer">
+                        <h3>Movie App</h3>
+                        <p>Movies have become the most popular form entertainment since the Last century.Almost all types of people nowadays watch movies in their leisure. The new technologies allows us to watch movies in 4k and 3D or go in a movie theature. So we are most up to dated with movies than we ever been. So we present you an application that gives you what is going on movie world at this very moment. You can always watch the Trailers in our app by Tapping on the Movies.</p>
+                        <p>Download it from play store to explore the features of this App</p>
+                        <a href="https://play.google.com/store/apps/details?id=app123456789999.com.example.adnanarmanfamiga.movieapp" target="_blank"><i class="fa-solid fa-up-right-from-square"></i></a>
+                    </div>
+                </div>
+                <div class="work">
+                    <img src="images/work-3.png" alt="">
+                    <div class="layer">
+                        <h3>Music App</h3>
+                        <p>There are not many apps that can filter current most popular Songs.So we present you Music-Z which gives brand new songs in your finger tips Music-Z brings you top 50 most popular Music Video on Youtube . It searches through entire youtube database and sorts out the top 50 recent most popular songs. On a single touch of your finger , you can play these songs and watch videos.</p>
+                        <p>Download it from play store to explore the features of this App</p>
+                        <a href="https://play.google.com/store/apps/details?id=com.yourtube.adnan.yourtube" target="_blank"><i class="fa-solid fa-up-right-from-square"></i></a>
+                    </div>
+                </div>
+            </div>
+            <a href="https://play.google.com/store/apps/developer?id=PriEm" target="_blank" class="btn">See more</a>
+        </div>
+    </div>
+
+
+    <!-----------------contact------------>
+    <div id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="contact-left">
+                    <h1 class="sub-title">Contact Me</h1>
+                    <p><i class="fas fa-paper-plane"></i>prince.cse.13@gmail.com</p>
+                    <p><i class="fas fa-phone-square-alt"></i>+8801916679932</p>
+                    <div class="social-icons">
+                        <a href="https://www.linkedin.com/in/md-mahedi-hasan-prince" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.facebook.com/prince00svn" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a href="https://wa.me/8801916679932" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://drive.google.com/file/d/13XaOMThhbaQPFXw0FP_IKpaxZx9svYEE/view?usp=sharing" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                    <a href="images/MD_MAHEDI_HASAN_CV.pdf" download class="btn btn2" >Download CV</a>
+                </div>
+                <div class="contact-right">
+                    <form name="submit-to-google-sheet">
+                        <input type="text" name="Name" placeholder="Your Name" required>
+                        <input type="email" name="Email" placeholder="Your Email" required>
+                        <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                        <button type="submit" class="btn btn2">submit</button>
+                    </form>
+                    <span id="msg"></span>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2023 <a href="https://play.google.com/store/apps/developer?id=PriEm" target="_blank"><img src="images/logo.png" class="logo_copyright"></a>.All Rights Reserved.</p>
+        </div>
+    </div>
+
+
+
+
+    <script>
+        var tablinks = document.getElementsByClassName("tab-links");
+        var tabcontents = document.getElementsByClassName("tab-contents");
+
+        function opentab(tabname){
+            for(tablink of tablinks){
+
+                tablink.classList.remove("active-link");
+            }
+            for(tabcontent of tabcontents){
+                tabcontent.classList.remove("active-tab");
+            }
+            event.currentTarget.classList.add("active-link");
+            document.getElementById(tabname).classList.add("active-tab");
+        
+        }
+
+    </script>
+
+    <script>
+        var sidemenu = document.getElementById("sidemenu");
+        function openmenu(){
+            sidemenu.style.right = "0";
+        }
+        function closemenu(){
+            sidemenu.style.right = "-200px";
+
+        }
+    </script>
+
+<script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzrOTYgehsm60HIG3Pf4rsqGLouyFmnmo9nAIztNPZQZooOfiYMlLY2CaM98ShiVTHnNQ/exec'
+    const form = document.forms['submit-to-google-sheet']
+    const msg = document.getElementById("msg")
+  
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+            msg.innerHTML = "Message Sent Successfully"
+            setTimeout(() => {
+                msg.innerHTML = ""
+            }, 7000)
+            form.reset()
+        })
+
+        .catch(error => console.error('Error!', error.message))
+    })
+  </script>
+
+</body>
+
+<script src="https://kit.fontawesome.com/6cd14c1ab4.js" crossorigin="anonymous"></script>
+<html>
+
+
