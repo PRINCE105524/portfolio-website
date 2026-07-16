@@ -1,361 +1,519 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mahedi | Software Engineer Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://kit.fontawesome.com/6cd14c1ab4.js" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Portfolio of Md. Mahedi Hasan, a Senior Android Engineer with 9+ years of experience building secure, scalable mobile products.">
+  <meta name="theme-color" content="#06152e">
+  <title>Md. Mahedi Hasan | Senior Android Engineer</title>
+  <style>
+    :root {
+      --ink: #07162f;
+      --ink-2: #0b2143;
+      --paper: #ffffff;
+      --soft: #f4f7fb;
+      --text: #0b1730;
+      --muted: #526079;
+      --line: #d8e0eb;
+      --line-dark: rgba(255, 255, 255, .16);
+      --blue: #3478f6;
+      --blue-2: #6aa4ff;
+      --mint: #58d6b1;
+      --max: 1180px;
+      --radius: 16px;
+      --shadow: 0 22px 55px rgba(4, 21, 50, .16);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--text);
+      background: var(--paper);
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    body.menu-open { overflow: hidden; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2, h3 { line-height: 1.12; letter-spacing: -.035em; }
+    ::selection { color: white; background: var(--blue); }
+    :focus-visible { outline: 3px solid var(--mint); outline-offset: 4px; }
+
+    .container { width: min(var(--max), calc(100% - 48px)); margin-inline: auto; }
+    .section { padding: 104px 0; }
+    .dark { color: white; background: var(--ink); }
+    .soft { background: var(--soft); }
+    .section-heading {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 36px;
+      margin-bottom: 54px;
+      align-items: start;
+    }
+    .section-heading h2 { margin: 0; font-size: clamp(2rem, 4vw, 3.7rem); }
+    .section-index {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--blue);
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    .section-index::before { content: ""; width: 38px; height: 1px; background: currentColor; }
+    .dark .section-index { color: var(--mint); }
+    .lede { max-width: 700px; margin: 8px 0 0; color: var(--muted); font-size: 1.08rem; }
+    .dark .lede { color: #b6c4db; }
+
+    .site-header {
+      position: fixed;
+      z-index: 50;
+      inset: 0 0 auto;
+      color: white;
+      border-bottom: 1px solid var(--line-dark);
+      background: rgba(7, 22, 47, .88);
+      backdrop-filter: blur(16px);
+    }
+    .nav { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 28px; }
+    .brand { font-size: 1.12rem; font-weight: 900; letter-spacing: -.04em; }
+    .brand span { color: var(--blue-2); }
+    .nav-links { display: flex; align-items: center; gap: 30px; }
+    .nav-links a:not(.nav-cta) { color: #ced8e9; font-size: .9rem; position: relative; }
+    .nav-links a:not(.nav-cta)::after {
+      content: ""; position: absolute; left: 0; right: 100%; bottom: -7px; height: 2px;
+      background: var(--mint); transition: right .25s ease;
+    }
+    .nav-links a:hover::after, .nav-links a.active::after { right: 0; }
+    .nav-links a:hover, .nav-links a.active { color: white; }
+    .nav-cta { padding: 9px 16px; border: 1px solid var(--blue-2); color: white; transition: .25s ease; }
+    .nav-cta:hover { background: var(--blue); border-color: var(--blue); }
+    .menu-button { display: none; padding: 8px; color: white; background: none; border: 0; cursor: pointer; }
+    .menu-button span { display: block; width: 24px; height: 2px; margin: 5px 0; background: currentColor; }
+
+    .hero {
+      min-height: 680px;
+      padding: 134px 0 74px;
+      color: white;
+      background:
+        linear-gradient(rgba(77, 128, 218, .07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(77, 128, 218, .07) 1px, transparent 1px),
+        var(--ink);
+      background-size: 54px 54px;
+      overflow: hidden;
+    }
+    .hero-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 64px; align-items: center; }
+    .hero h1 { max-width: 760px; margin-bottom: 24px; font-size: clamp(3.2rem, 5vw, 5.15rem); }
+    .hero h1 em { color: var(--blue-2); font-style: normal; }
+    .hero-copy { max-width: 650px; margin-bottom: 34px; color: #becbe0; font-size: clamp(1rem, 1.5vw, 1.19rem); }
+    .actions { display: flex; flex-wrap: wrap; gap: 14px; }
+    .button {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      min-height: 50px; padding: 0 21px; border: 1px solid rgba(255,255,255,.28);
+      color: white; font-size: .91rem; font-weight: 750; transition: transform .2s ease, background .2s ease;
+    }
+    .button:hover { transform: translateY(-2px); background: rgba(255,255,255,.08); }
+    .button.primary { border-color: var(--blue); background: var(--blue); }
+    .button.primary:hover { background: #2469e8; }
+    .button .arrow { font-size: 1.2em; }
+
+    .system-visual { position: relative; min-height: 430px; display: grid; place-items: center; }
+    .phone {
+      position: relative; z-index: 2; width: 214px; height: 414px; padding: 42px 18px 20px;
+      border: 2px solid #91b6ee; border-radius: 32px; background: #071a38; box-shadow: var(--shadow);
+    }
+    .phone::before { content: ""; position: absolute; top: 14px; left: 50%; width: 54px; height: 5px; border-radius: 6px; background: #466184; transform: translateX(-50%); }
+    .layer-box { padding: 12px 9px; margin-bottom: 10px; text-align: center; border: 1px solid #4879be; color: #dce9fb; background: #0b2349; font-size: .68rem; }
+    .layer-box:nth-child(2), .layer-box:nth-child(4) { border-color: rgba(88,214,177,.65); }
+    .node {
+      position: absolute; width: 130px; padding: 10px 12px; border: 1px solid #355a8a;
+      color: #b9c8de; background: #081b38; font: 600 .68rem/1.3 ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+    .node::after { content: ""; position: absolute; top: 50%; width: 65px; border-top: 1px dashed #4f78a9; }
+    .node.left { left: 0; text-align: right; }
+    .node.left::after { left: 100%; }
+    .node.right { right: -10px; }
+    .node.right::after { right: 100%; }
+    .node.n1 { top: 68px; } .node.n2 { top: 222px; } .node.n3 { top: 104px; } .node.n4 { top: 264px; }
+    .pulse { position: absolute; bottom: 12px; left: 4%; right: 2%; height: 48px; opacity: .8; }
+    .pulse svg { width: 100%; height: 100%; }
+
+    .proof { color: white; background: #091c3a; border-top: 1px solid var(--line-dark); border-bottom: 1px solid var(--line-dark); }
+    .proof-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+    .proof-item { padding: 26px 24px; border-left: 1px solid var(--line-dark); }
+    .proof-item:last-child { border-right: 1px solid var(--line-dark); }
+    .proof-value { display: block; color: white; font-size: 1.55rem; font-weight: 850; letter-spacing: -.04em; }
+    .proof-label { color: #95a8c5; font-size: .78rem; }
+
+    .about-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 80px; }
+    .about-statement { font-size: clamp(1.6rem, 2.8vw, 2.6rem); font-weight: 720; letter-spacing: -.04em; line-height: 1.25; }
+    .about-copy p { color: var(--muted); }
+    .capabilities { margin-top: 50px; border-top: 1px solid var(--line); }
+    .capability {
+      display: grid; grid-template-columns: 56px 1fr; gap: 22px; align-items: start;
+      padding: 25px 0; border-bottom: 1px solid var(--line);
+    }
+    .capability-num { color: var(--blue); font: 750 .76rem ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .capability h3 { margin-bottom: 7px; font-size: 1.07rem; }
+    .capability p { margin: 0; color: var(--muted); font-size: .92rem; }
+
+    .timeline { position: relative; max-width: 990px; margin-left: auto; }
+    .timeline::before { content: ""; position: absolute; top: 8px; bottom: 8px; left: 11px; width: 1px; background: #365276; }
+    .role { position: relative; display: grid; grid-template-columns: 190px 1fr; gap: 34px; padding: 0 0 47px 54px; }
+    .role:last-child { padding-bottom: 0; }
+    .role::before { content: ""; position: absolute; top: 5px; left: 4px; width: 14px; height: 14px; border: 3px solid var(--ink); border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 1px var(--blue-2); }
+    .role:nth-child(even)::before { background: var(--mint); box-shadow: 0 0 0 1px var(--mint); }
+    .role-meta { color: #8fa4c1; font-size: .83rem; }
+    .role-meta span { display: block; margin-top: 5px; color: #7188a9; }
+    .role h3 { margin-bottom: 6px; font-size: 1.35rem; }
+    .role-title { margin-bottom: 12px; color: var(--blue-2); font-weight: 700; font-size: .92rem; }
+    .role p { margin: 0; color: #b6c4d9; font-size: .94rem; }
+    .role-tags { display: flex; flex-wrap: wrap; gap: 8px 15px; margin-top: 14px; color: #7fe0c3; font-size: .76rem; }
+
+    .project-feature { display: grid; grid-template-columns: .84fr 1.16fr; min-height: 380px; border-top: 1px solid var(--line); }
+    .project-feature:last-of-type { border-bottom: 1px solid var(--line); }
+    .project-visual { position: relative; display: grid; place-items: center; min-height: 360px; overflow: hidden; background: #eaf0ff; }
+    .project-feature:nth-child(2) .project-visual { background: #e8faf5; }
+    .mini-phone {
+      position: relative; width: 186px; height: 310px; padding: 24px 16px; color: white;
+      border: 7px solid #0a1830; border-radius: 27px; background: var(--ink); box-shadow: 0 24px 45px rgba(7,22,47,.24); transform: rotate(-4deg);
+    }
+    .project-feature:nth-child(2) .mini-phone { transform: rotate(4deg); }
+    .mini-phone::before { content: ""; position: absolute; top: 7px; left: 50%; width: 38px; height: 4px; border-radius: 4px; background: #526581; transform: translateX(-50%); }
+    .app-mark { display: grid; place-items: center; width: 45px; height: 45px; margin: 16px 0 25px; border-radius: 13px; background: var(--blue); font-size: 1.3rem; font-weight: 900; }
+    .project-feature:nth-child(2) .app-mark { color: var(--ink); background: var(--mint); }
+    .mini-phone h4 { margin: 0 0 8px; font-size: 1.2rem; }
+    .mini-phone p { color: #a9bbd4; font-size: .68rem; }
+    .ui-line { height: 7px; margin: 12px 0; border-radius: 5px; background: #29466d; }
+    .ui-line.short { width: 64%; }
+    .project-body { display: flex; flex-direction: column; justify-content: center; padding: 55px 7vw; }
+    .project-topline { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .project-body h3 { margin-bottom: 10px; font-size: clamp(2rem, 3.5vw, 3.4rem); }
+    .project-type { color: var(--blue); font-size: .78rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+    .project-body > p { max-width: 620px; color: var(--muted); }
+    .project-stats { display: flex; flex-wrap: wrap; gap: 10px 26px; margin: 16px 0 24px; color: var(--text); font-size: .85rem; font-weight: 650; }
+    .project-stats strong { color: var(--blue); }
+    .project-link { align-self: flex-start; display: inline-flex; align-items: center; gap: 9px; color: var(--blue); font-weight: 800; font-size: .9rem; }
+    .project-link:hover { text-decoration: underline; text-underline-offset: 5px; }
+
+    .project-list { display: grid; grid-template-columns: 1fr 1fr; margin-top: 50px; border-top: 1px solid var(--line); }
+    .project-item {
+      display: grid; grid-template-columns: 45px 1fr auto; gap: 17px; align-items: center;
+      min-height: 132px; padding: 22px 28px 22px 0; border-bottom: 1px solid var(--line); transition: background .2s ease, padding .2s ease;
+    }
+    .project-item:nth-child(odd) { padding-right: 28px; border-right: 1px solid var(--line); }
+    .project-item:nth-child(even) { padding-left: 28px; }
+    .project-item:hover { background: #f7f9fc; padding-inline: 18px; }
+    .project-icon { display: grid; place-items: center; width: 44px; height: 44px; color: var(--blue); border: 1px solid #abc6f7; font-weight: 900; }
+    .project-item h3 { margin: 0 0 5px; font-size: 1.05rem; }
+    .project-item p { margin: 0; color: var(--muted); font-size: .8rem; line-height: 1.45; }
+    .project-item .go { color: var(--blue); font-size: 1.4rem; transition: transform .2s ease; }
+    .project-item:hover .go { transform: translateX(4px); }
+
+    .stack-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line-dark); border-left: 1px solid var(--line-dark); }
+    .stack-group { min-height: 210px; padding: 27px; border-right: 1px solid var(--line-dark); border-bottom: 1px solid var(--line-dark); }
+    .stack-symbol { margin-bottom: 22px; color: var(--mint); font: 800 1.4rem ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .stack-group h3 { margin-bottom: 14px; font-size: 1rem; }
+    .stack-group p { margin: 0; color: #9eb0ca; font-size: .83rem; }
+
+    .credentials { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; }
+    .credential-column h3 { padding-bottom: 17px; margin-bottom: 0; border-bottom: 2px solid var(--text); font-size: 1.35rem; }
+    .credential { padding: 22px 0; border-bottom: 1px solid var(--line); }
+    .credential strong { display: block; margin-bottom: 3px; }
+    .credential span { color: var(--muted); font-size: .85rem; }
+    .credential .meta { display: flex; justify-content: space-between; gap: 14px; margin-top: 7px; color: var(--blue); font-size: .77rem; font-weight: 750; }
+
+    .footer { padding: 76px 0 30px; color: white; background: var(--ink); }
+    .footer-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 60px; align-items: end; }
+    .footer h2 { max-width: 620px; margin-bottom: 18px; font-size: clamp(2.7rem, 5vw, 5rem); }
+    .footer h2 span { color: var(--blue-2); }
+    .footer-copy { color: #aebdd2; }
+    .contact-list { border-top: 1px solid var(--line-dark); }
+    .contact-list a, .contact-row { display: flex; justify-content: space-between; gap: 20px; padding: 16px 0; border-bottom: 1px solid var(--line-dark); color: #d9e3f2; }
+    .contact-list a:hover { color: var(--mint); }
+    .contact-label { color: #7188a9; font-size: .74rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+    .footer-bottom { display: flex; justify-content: space-between; gap: 24px; margin-top: 68px; padding-top: 22px; border-top: 1px solid var(--line-dark); color: #7890af; font-size: .75rem; }
+    .back-top:hover { color: white; }
+
+    .reveal { opacity: 1; transform: none; }
+
+    @media (max-width: 950px) {
+      .hero-grid, .about-grid, .footer-grid { grid-template-columns: 1fr; }
+      .hero { padding-top: 140px; }
+      .system-visual { margin-top: 24px; }
+      .about-grid { gap: 34px; }
+      .section-heading { grid-template-columns: 1fr; gap: 14px; }
+      .role { grid-template-columns: 150px 1fr; }
+      .project-feature { grid-template-columns: 1fr; }
+      .project-visual { min-height: 330px; }
+      .project-body { padding: 48px 32px; }
+      .stack-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { align-items: start; }
+    }
+
+    @media (max-width: 720px) {
+      .container { width: min(100% - 32px, var(--max)); }
+      .section { padding: 76px 0; }
+      .menu-button { display: block; }
+      .nav-links {
+        position: fixed; inset: 72px 0 auto; display: grid; gap: 0; padding: 18px 24px 28px;
+        border-bottom: 1px solid var(--line-dark); background: var(--ink); transform: translateY(-130%); transition: transform .25s ease;
+      }
+      .nav-links.open { transform: translateY(0); }
+      .nav-links a { padding: 14px 0; }
+      .nav-cta { margin-top: 10px; text-align: center; }
+      .hero { min-height: auto; padding: 124px 0 68px; }
+      .hero h1 { font-size: clamp(2.75rem, 13.5vw, 4.8rem); }
+      .system-visual { min-height: 375px; transform: scale(.87); margin: -5px -25px -35px; }
+      .proof-grid { grid-template-columns: 1fr 1fr; }
+      .proof-item:nth-child(3) { border-top: 1px solid var(--line-dark); }
+      .proof-item:nth-child(4) { border-top: 1px solid var(--line-dark); }
+      .role { grid-template-columns: 1fr; gap: 8px; padding-left: 42px; }
+      .project-list { grid-template-columns: 1fr; }
+      .project-item:nth-child(n) { padding-inline: 0; border-right: 0; }
+      .project-item:hover { padding-inline: 12px; }
+      .credentials { grid-template-columns: 1fr; gap: 50px; }
+      .footer-bottom { flex-direction: column; }
+    }
+
+    @media (max-width: 470px) {
+      .actions { display: grid; }
+      .button { width: 100%; }
+      .proof-grid, .stack-grid { grid-template-columns: 1fr; }
+      .proof-item { border-right: 1px solid var(--line-dark); border-top: 1px solid var(--line-dark); }
+      .stack-group { min-height: auto; }
+      .node { width: 105px; font-size: .57rem; }
+      .node::after { width: 35px; }
+      .phone { width: 180px; height: 380px; }
+      .project-body { padding-inline: 20px; }
+      .project-topline { align-items: flex-start; flex-direction: column-reverse; }
+      .project-stats { display: grid; gap: 7px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
 </head>
-
 <body>
-    <div id="header">
-        <div class="container">
-            <nav>
-                <img src="images/logo.png" class="logo">
-                <ul id="sidemenu">
-                    <li><a href="#header">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <i class="fas fa-times" onclick="closemenu()"></i>
-                </ul>
-                <i class="fas fa-bars" onclick="openmenu()"></i>
-            </nav>
-            <div class="header-text">
-                <p id="typing-text"></p>
-                <h1>Hi, I'm <span>Mahedi</span><br> From Bangladesh</h1>
-            </div>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="Mahedi Hasan home">MAHEDI<span>.</span></a>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav-links" id="nav-links" aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#work">Work</a>
+        <a href="#stack">Stack</a>
+        <a class="nav-cta" href="mailto:ict.prince@gmail.com">Let's talk ↗</a>
+      </nav>
+    </div>
+  </header>
 
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <h1>I build Android products that stay <em>fast, secure,</em> and dependable at scale.</h1>
+          <p class="hero-copy">Senior Software Engineer with 9+ years of experience across real-time communication, digital identity, on-device ML, and consumer mobile products.</p>
+          <div class="actions">
+            <a class="button primary" href="#work">Explore my work <span class="arrow">→</span></a>
+            <a class="button" href="MAHEDI_HASAN_CV.pdf" download="MAHEDI_HASAN_CV.pdf">Download résumé <span aria-hidden="true">↓</span></a>
+          </div>
         </div>
+        <div class="system-visual" aria-label="Android architecture diagram">
+          <div class="node left n1">StateFlow<br>ViewModel</div>
+          <div class="node left n2">Room<br>offline first</div>
+          <div class="phone">
+            <div class="layer-box">Jetpack Compose</div>
+            <div class="layer-box">Domain layer</div>
+            <div class="layer-box">Repository</div>
+            <div class="layer-box">Secure data</div>
+            <div class="layer-box">Network + sync</div>
+          </div>
+          <div class="node right n3">Firebase<br>services</div>
+          <div class="node right n4">MQTT<br>real-time</div>
+          <div class="pulse" aria-hidden="true">
+            <svg viewBox="0 0 500 70" fill="none"><path d="M0 43h75l16-20 22 38 24-50 22 32h61l18-12 20 12h54l13-25 22 45 26-40 20 20h107" stroke="#58d6b1" stroke-width="2"/></svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="proof" aria-label="Career highlights">
+      <div class="container proof-grid">
+        <div class="proof-item"><span class="proof-value">9+ years</span><span class="proof-label">mobile engineering experience</span></div>
+        <div class="proof-item"><span class="proof-value">100K+</span><span class="proof-label">KinderMate downloads</span></div>
+        <div class="proof-item"><span class="proof-value">5K</span><span class="proof-label">CommChat daily active users</span></div>
+        <div class="proof-item"><span class="proof-value">98.72%</span><span class="proof-label">CommChat crash-free sessions</span></div>
+      </div>
     </div>
 
-    <!----------about-------------->
-
-    <div id="about">
-        <div class="container">
-            <div class="row">
-                <div class="about-col-1">
-                    <img src="images/user.jpeg" alt="">
-                </div>
-                <div class="about-col-2">
-                    <h1 class="sub-title">About Me</h1>
-                    <p class="sub-pera">Building a challenging, competitive and reward-oriented career with integrity,
-                        punctuality and hardworking.Experienced Software Engineer with a demonstrated history of working
-                        in the computer software industry. Skilled in iOS, SQL, PHP, C++, and Android. Strong
-                        engineering professional graduated from Military Institute of Science and Technology (MIST).</p>
-
-                    <div class="tab-titles">
-                        <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
-                        <p class="tab-links" onclick="opentab('experience')">Experience</p>
-                        <p class="tab-links" onclick="opentab('education')">Education</p>
-                    </div>
-
-                    <div class="tab-contents active-tab" id="skills">
-                        <ul>
-                            <li><span>App Development</span><br>Building Native Android/iOS apps using Java, Swift,
-                                Android Studio and Xcode</li>
-                            <li><span>Web Development</span><br>Web app Development using React and Node.js</li>
-                            <li><span>UI/UX Design</span><br>Designing Web/App interfaces using Figma</li>
-                        </ul>
-                    </div>
-
-                    <div class="tab-contents" id="experience">
-                        <ul>
-                            <li><span>June 1, 2019 – Present</span><br>Assistant Programmer at Telecommunication, ICT
-                                Infrastructure, Human Resource Development, and Technical Capacity Building(TIHDTCB)
-                                Project under the Ministry of Defence(MOD)</li>
-                            <li><span>August 1, 2017 - October 20, 2018</span><br>Senior Mobile App Developer at
-                                Business Accelerate BD Ltd.</li>
-                            <li><span>February 1, 2017 – July 30,2017</span><br>Junior Software Engineer at Xenial IT
-                                Ltd.</li>
-                            <li><span>November 1, 2015 – December 30, 2015</span><br>Internship at Bangladesh Computer
-                                Council (BCC)</li>
-                        </ul>
-                    </div>
-
-                    <div class="tab-contents" id="education">
-                        <div style="overflow-x:auto;">
-                            <table class="tb">
-                                <tr>
-                                    <th>QUALIFICATIONS</th>
-                                    <th>INSTITUATION</th>
-                                    <th>YEAR</th>
-                                    <th>GRADE</th>
-                                </tr>
-                                <tr>
-                                    <td>M.Sc. in Information and Communication Technology</td>
-                                    <td>Bangladesh University of Engineering Technology (BUET)</td>
-                                    <td>2023<br>(Expected)</td>
-                                    <td>3.40<br>(Scale-4.00)</td>
-                                </tr>
-                                <tr>
-                                    <td>B.Sc. in Computer Science and Engineering</td>
-                                    <td>Military Institute of Science and Technology (MIST)</td>
-                                    <td>2017</td>
-                                    <td>3.27<br>(Scale-4.00)</td>
-                                </tr>
-                                <tr>
-                                    <td>Higher Secondary Certificate (H.S.C)</td>
-                                    <td>Chittagong College, Chittagong</td>
-                                    <td>2012</td>
-                                    <td>5.00<br>(Scale-5.00)</td>
-                                </tr>
-                                <tr>
-                                    <td>Secondary School Certificate (S.S.C)</td>
-                                    <td>B.N School & College, Chittagong</td>
-                                    <td>2010</td>
-                                    <td>5.00<br>(Scale-5.00)</td>
-                                </tr>
-                            </table>
-                        </div>
-
-                    </div>
-
-                </div>
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="section-index">01 / About</div>
+          <h2>Engineering mobile experiences people can trust.</h2>
+        </div>
+        <div class="about-grid">
+          <p class="about-statement reveal">I turn complex requirements into reliable Android products—from architecture and delivery to optimization and production support.</p>
+          <div class="about-copy reveal">
+            <p>I'm Md. Mahedi Hasan, a Senior Android Engineer based in Dhaka. I build secure, scalable applications using modern Android frameworks and practical engineering fundamentals.</p>
+            <p>My work spans communication platforms, digital identity, AI-assisted learning, on-device machine learning, consumer utilities, and government systems. I collaborate closely with product, design, backend, QA, and engineering teams to ship maintainable products.</p>
+            <div class="capabilities">
+              <div class="capability"><span class="capability-num">01</span><div><h3>Android architecture</h3><p>Clean Architecture, MVVM, Compose, modularization, and maintainable delivery patterns.</p></div></div>
+              <div class="capability"><span class="capability-num">02</span><div><h3>Secure real-time systems</h3><p>MQTT, WebRTC, Telecom, encrypted messaging, reliable synchronization, and resilient networking.</p></div></div>
+              <div class="capability"><span class="capability-num">03</span><div><h3>AI &amp; on-device ML</h3><p>CameraX, ML Kit, TensorFlow Lite, cloud speech, generative AI, OCR, and document processing.</p></div></div>
+              <div class="capability"><span class="capability-num">04</span><div><h3>Performance &amp; reliability</h3><p>Database tuning, concurrency, memory optimization, automated testing, and production monitoring.</p></div></div>
             </div>
+          </div>
         </div>
+      </div>
+    </section>
+
+    <section class="section dark" id="experience">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="section-index">02 / Experience</div>
+          <div><h2>Experience shaped by ownership.</h2><p class="lede">Technical planning, hands-on delivery, engineering guidance, and production reliability across public- and private-sector products.</p></div>
+        </div>
+        <div class="timeline">
+          <article class="role reveal">
+            <div class="role-meta">Nov 2023 — Present<span>Mirpur DOHS, Dhaka</span></div>
+            <div><h3>TigerIT Bangladesh Ltd.</h3><div class="role-title">Senior Software Engineer</div><p>Lead Android feature planning and architectural decisions from design through production. Modernize legacy modules, mentor engineers, lead code reviews, and deliver secure messaging, identity, AI/ML, and performance-focused capabilities.</p><div class="role-tags"><span>Kotlin</span><span>Jetpack Compose</span><span>MQTT</span><span>WebRTC</span><span>Room</span><span>Hilt</span><span>JUnit</span><span>Espresso</span></div></div>
+          </article>
+          <article class="role reveal">
+            <div class="role-meta">Jun 2019 — Oct 2023<span>Dhaka Cantonment</span></div>
+            <div><h3>Govt. ICT Project</h3><div class="role-title">Assistant Programmer · TIHDTCB under the Ministry of Defence</div><p>Built and maintained in-house mobile and web applications from requirements through release. Contributed to architecture, REST integrations, database design, vendor coordination, performance optimization, and reliable CI/CD delivery.</p><div class="role-tags"><span>Java</span><span>Kotlin</span><span>Android Jetpack</span><span>Spring Boot</span><span>Django</span><span>PostgreSQL</span><span>Docker</span></div></div>
+          </article>
+          <article class="role reveal">
+            <div class="role-meta">Aug 2017 — Oct 2018<span>Shahjadpur, Dhaka</span></div>
+            <div><h3>Business Accelerate BD Ltd.</h3><div class="role-title">Software Engineer</div><p>Developed Android features for a Secondary Sales Automation platform, integrated mobile and web components, resolved production defects, and delivered business requirements for major consumer and industrial clients.</p><div class="role-tags"><span>Java</span><span>MVVM</span><span>Retrofit</span><span>Firebase</span><span>MySQL</span></div></div>
+          </article>
+          <article class="role reveal">
+            <div class="role-meta">Feb 2017 — Jul 2017<span>Dhanmondi, Dhaka</span></div>
+            <div><h3>Xenial IT Ltd.</h3><div class="role-title">Junior Software Engineer</div><p>Developed JavaFX and Spring-based desktop modules, resolved defects through testing, and built responsive websites in collaboration with cross-functional teams.</p><div class="role-tags"><span>JavaFX</span><span>Spring</span><span>JDBC</span><span>SQL</span><span>HTML/CSS</span></div></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="work">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="section-index">03 / Work</div>
+          <div><h2>Selected products.</h2><p class="lede">Published applications built through professional collaboration and a continuing passion for exploring new mobile trends.</p></div>
+        </div>
+
+        <article class="project-feature reveal">
+          <div class="project-visual"><div class="mini-phone"><div class="app-mark">K</div><h4>KinderMate</h4><p>AI learning made engaging, contextual, and safer for curious minds.</p><div class="ui-line"></div><div class="ui-line short"></div><div class="ui-line"></div></div></div>
+          <div class="project-body"><div class="project-topline"><h3>KinderMate</h3><span class="project-type">AI learning for kids</span></div><p>Child-friendly AI learning app with voice conversations, curated videos, parental controls, and COPPA-focused safety.</p><div class="project-stats"><span><strong>100K+</strong> downloads</span><span>Unity</span><span>Google Cloud Speech</span><span>ElevenLabs TTS</span><span>Play Billing</span></div><a class="project-link" href="https://play.google.com/store/apps/details?id=com.kindermate.kai" target="_blank" rel="noopener">View on Google Play →</a></div>
+        </article>
+
+        <article class="project-feature reveal">
+          <div class="project-visual"><div class="mini-phone"><div class="app-mark">C</div><h4>CommChat</h4><p>Secure communication for messages, calls, teams, and real-time collaboration.</p><div class="ui-line"></div><div class="ui-line"></div><div class="ui-line short"></div></div></div>
+          <div class="project-body"><div class="project-topline"><h3>CommChat</h3><span class="project-type">Messenger &amp; calls</span></div><p>Secure communication platform with encrypted messaging, threaded collaboration, group calls, real-time translation, and resilient synchronization.</p><div class="project-stats"><span><strong>5K</strong> DAU</span><span><strong>98.72%</strong> crash-free</span><span>Post-quantum cryptography</span><span>BLE connectivity</span><span>Telecom framework</span></div><a class="project-link" href="https://play.google.com/store/apps/details?id=com.ccp.comm" target="_blank" rel="noopener">View on Google Play →</a></div>
+        </article>
+
+        <div class="project-list">
+          <a class="project-item reveal" href="https://play.google.com/store/apps/details?id=app123456789999.com.example.adnanarmanfamiga.movieapp" target="_blank" rel="noopener"><span class="project-icon">M</span><span><h3>MovieMate</h3><p>Movie and TV discovery with trailers, watchlists, AI-assisted recommendations, and community features. · 50K+ downloads</p></span><span class="go">→</span></a>
+          <a class="project-item reveal" href="https://play.google.com/store/apps/details?id=com.andromist.ai.studyassistant" target="_blank" rel="noopener"><span class="project-icon">S</span><span><h3>Study Buddy</h3><p>AI tutor with OCR/PDF summaries, quizzes, essays, and spaced-repetition flashcards.</p></span><span class="go">→</span></a>
+          <a class="project-item reveal" href="https://play.google.com/store/apps/details?id=com.priem.appblocker" target="_blank" rel="noopener"><span class="project-icon">A</span><span><h3>Aura / App Blocker Lite</h3><p>Privacy-focused digital wellbeing with habit-based unlocks, screen-time budgets, and local insights.</p></span><span class="go">→</span></a>
+          <a class="project-item reveal" href="https://play.google.com/store/apps/details?id=com.priem.drinkwater" target="_blank" rel="noopener"><span class="project-icon">D</span><span><h3>Drinkwater</h3><p>Gamified hydration tracking with smart reminders, progress history, and a plant companion.</p></span><span class="go">→</span></a>
+          <a class="project-item reveal" href="https://play.google.com/store/apps/details?id=com.priem.cashbook" target="_blank" rel="noopener"><span class="project-icon">C</span><span><h3>Cashbook</h3><p>Personal finance utility for organizing daily income, expenses, balances, and transactions.</p></span><span class="go">→</span></a>
+          <a class="project-item reveal" href="https://apps.apple.com/app/poststyler-social-quotes/id6786997228" target="_blank" rel="noopener"><span class="project-icon">P</span><span><h3>PostStyler · iOS</h3><p>Creative tool for styling and sharing visual quotes and text-based social posts.</p></span><span class="go">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dark" id="stack">
+      <div class="container">
+        <div class="section-heading reveal"><div class="section-index">04 / Stack</div><div><h2>Tools chosen for the product.</h2><p class="lede">A practical toolkit for designing, building, testing, and operating robust mobile applications.</p></div></div>
+        <div class="stack-grid reveal">
+          <div class="stack-group"><div class="stack-symbol">&lt;/&gt;</div><h3>Language &amp; UI</h3><p>Kotlin · Java · Jetpack Compose · Views · Material Design</p></div>
+          <div class="stack-group"><div class="stack-symbol">{ }</div><h3>Architecture</h3><p>Clean Architecture · MVVM · MVI · Hilt · modular design</p></div>
+          <div class="stack-group"><div class="stack-symbol">DB</div><h3>Data &amp; storage</h3><p>Room · SQLite · DataStore · SharedPreferences · PostgreSQL</p></div>
+          <div class="stack-group"><div class="stack-symbol">⇄</div><h3>Real-time &amp; network</h3><p>MQTT · WebRTC · Telecom · Retrofit · OkHttp · REST APIs</p></div>
+          <div class="stack-group"><div class="stack-symbol">AI</div><h3>AI &amp; camera</h3><p>CameraX · ML Kit · TensorFlow Lite · Generative AI · OCR</p></div>
+          <div class="stack-group"><div class="stack-symbol">∞</div><h3>Concurrency</h3><p>Coroutines · Flow · StateFlow · WorkManager · Paging 3</p></div>
+          <div class="stack-group"><div class="stack-symbol">✓</div><h3>Quality &amp; testing</h3><p>JUnit · Espresso · Macrobenchmark · Crashlytics · profiling</p></div>
+          <div class="stack-group"><div class="stack-symbol">SEC</div><h3>Security</h3><p>Signal Protocol · PQC · biometrics · encrypted storage · VPN</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft" id="credentials">
+      <div class="container">
+        <div class="section-heading reveal"><div class="section-index">05 / Credentials</div><h2>Education &amp; continuous learning.</h2></div>
+        <div class="credentials">
+          <div class="credential-column reveal"><h3>Education</h3><div class="credential"><strong>M.Sc. in Information and Communication Technology</strong><span>Bangladesh University of Engineering and Technology (BUET)</span><div class="meta"><span>CGPA 3.40 / 4.00</span><span>2027 · Expected</span></div></div><div class="credential"><strong>B.Sc. in Computer Science and Engineering</strong><span>Military Institute of Science and Technology (MIST)</span><div class="meta"><span>CGPA 3.27 / 4.00</span><span>2017</span></div></div><div class="credential"><strong>Higher Secondary Certificate · Science</strong><span>Chittagong College</span><div class="meta"><span>GPA 5.00 / 5.00</span><span>2012</span></div></div></div>
+          <div class="credential-column reveal"><h3>Training &amp; certification</h3><div class="credential"><strong>Cisco CyberOps Associate</strong><span>Cisco Academy · Cyber and network infrastructure vulnerability analysis</span></div><div class="credential"><strong>Introduction to Cyber Security</strong><span>Cisco Academy · Cryptography, network and application security, and identity management</span></div><div class="credential"><strong>Cisco CCNA Training</strong><span>The New Horizon · Networking, routing, and switching</span></div><div class="credential"><strong>Server and Storage Technology</strong><span>Biotech BD · Linux server, storage, and cloud technology</span></div></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="contact">
+    <div class="container">
+      <div class="footer-grid">
+        <div><h2>Build something <span>reliable.</span></h2><p class="footer-copy">Open to meaningful Android engineering conversations, product collaboration, and technical leadership opportunities.</p></div>
+        <div class="contact-list">
+          <a href="mailto:ict.prince@gmail.com"><span class="contact-label">Email</span><span>ict.prince@gmail.com ↗</span></a>
+          <a href="https://www.linkedin.com/in/md-mahedi-hasan-prince/" target="_blank" rel="noopener"><span class="contact-label">LinkedIn</span><span>md-mahedi-hasan-prince ↗</span></a>
+          <a href="https://github.com/PRINCE105524" target="_blank" rel="noopener"><span class="contact-label">GitHub</span><span>PRINCE105524 ↗</span></a>
+          <a href="tel:+8801916679932"><span class="contact-label">Phone</span><span>+880 1916679932 ↗</span></a>
+          <div class="contact-row"><span class="contact-label">Based in</span><span>Dhaka Cantonment, Bangladesh</span></div>
+        </div>
+      </div>
+      <div class="footer-bottom"><span>© <span id="year">2026</span> Md. Mahedi Hasan. All rights reserved.</span><a class="back-top" href="#top">Back to top ↑</a></div>
     </div>
+  </footer>
 
+  <script>
+    const menuButton = document.querySelector('.menu-button');
+    const navLinks = document.querySelector('.nav-links');
+    const navItems = [...document.querySelectorAll('.nav-links a[href^="#"]')];
 
-    <!----------services-------------->
+    function closeMenu() {
+      navLinks.classList.remove('open');
+      document.body.classList.remove('menu-open');
+      menuButton.setAttribute('aria-expanded', 'false');
+    }
 
-    <div id="services">
-        <div class="container">
-            <h1 class="sub-title">My Services</h1>
-            <div class="services-list">
-                <div>
-                    <i class="fa-brands fa-app-store"></i>
-                    <h2>App Development</h2>
-                    <p>I offer a full cycle of application design, integration and management services. Whether it is a
-                        consumer oriented app or a transformative enterprise-class solution, the entire mobile app
-                        development process from ideation and concept to delivery, and to ongoing support.</p>
-                    <br>
-                    <ul>
-                        <li> Custom iOS and Android apps development</li>
-                        <li> Native and cross-platform solutions</li>
-                        <li> UI/UX design</li>
-                        <li> Consulting and prototyping</li>
-                        <li> Automated QA and testing</li>
-                        <li> Power management, notification and geofencing</li>
-                        <li> Embedded Android &amp; AOSP customizations</li>
-                        <li> Maintenance and post-warranty support</li>
-                    </ul>
-                </div>
+    menuButton.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      document.body.classList.toggle('menu-open', isOpen);
+      menuButton.setAttribute('aria-expanded', String(isOpen));
+    });
+    navLinks.addEventListener('click', event => { if (event.target.matches('a')) closeMenu(); });
+    window.addEventListener('resize', () => { if (window.innerWidth > 720) closeMenu(); });
 
-                <div>
-                    <i class="fa-solid fa-globe"></i>
-                    <h2>Web Development</h2>
-                    <p>Here are just some of the ways that I stand out as an individual when it comes to what my
-                        experience is with websites and creating digital experiences.</p>
-                    <br>
-                    <ul>
-                        <li> Agile web design and development methodology</li>
-                        <li> Award winning web solutions and sites</li>
-                        <li> Competitive rates for web design and development talent</li>
-                        <li> Friendly, open, communicative and collaborative way of working with clients</li>
-                        <li> Proven track record of successful web design and development project delivery</li>
-                        <li> Rigorous quality assurance (QA) testing before “Go-Live”</li>
-                        <li> Shorter development times translating to lower costs</li>
-                    </ul>
-                </div>
-
-                <div>
-                    <i class="fa-sharp fa-solid fa-paintbrush"></i>
-                    <h2>UI/UX Design</h2>
-                    <p>UI/UX is not just a process of designing an interface for your website or application. You won’t
-                        allow damnable design and imperfect experience in your program. Therefore, experts go through
-                        step by step process, consultations between the UI developer and the UX developer, research,
-                        analysis, prototype, testing and so on. I have specialized in this sector and streamline the
-                        process through experience and high consideration. Here is a little showcase of my service types
-                        and facilities.</p>
-                    <br>
-                    <ul>
-                        <li> Software UI/UX design</li>
-                        <li> Mobile application UI/UX design</li>
-                        <li> Ecommerce website UI/UX design</li>
-                        <li> List UI design</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <!----------portfolio-------------->
-    <div id="portfolio">
-        <div class="container">
-            <h1 class="sub-title">My Work</h1>
-            <div class="work-list">
-                <div class="work">
-                    <img src="images/work-1.png" alt="">
-                    <div class="layer">
-                        <h3>Healthcare Pharmacy App</h3>
-                        <p>Operating within both traditional and digital media channels, Wellbeing Pharmacy App serves
-                            the needs of health care products through highly trained staffs who are there to serve each
-                            customer with great service and value. This App helps customer to know more about health
-                            care products and its prices. The aim of this app is "Order health care products from
-                            anywhere in Bangladesh and receive them at customer's doorstep".</p>
-                        <p>Download it from play store to explore the features of this App</p>
-                        <a href="https://play.google.com/store/apps/details?id=com.wellbeing.wellbeingpharmacy"
-                            target="_blank"><i class="fa-solid fa-up-right-from-square"></i></a>
-                    </div>
-                </div>
-
-                <div class="work">
-                    <img src="images/work-2.png" alt="">
-                    <div class="layer">
-                        <h3>Movie App</h3>
-                        <p>Movies have become the most popular form entertainment since the Last century.Almost all
-                            types of people nowadays watch movies in their leisure. The new technologies allows us to
-                            watch movies in 4k and 3D or go in a movie theature. So we are most up to dated with movies
-                            than we ever been. So we present you an application that gives you what is going on movie
-                            world at this very moment. You can always watch the Trailers in our app by Tapping on the
-                            Movies.</p>
-                        <p>Download it from play store to explore the features of this App</p>
-                        <a href="https://play.google.com/store/apps/details?id=app123456789999.com.example.adnanarmanfamiga.movieapp"
-                            target="_blank"><i class="fa-solid fa-up-right-from-square"></i></a>
-                    </div>
-                </div>
-                <div class="work">
-                    <img src="images/work-3.png" alt="">
-                    <div class="layer">
-                        <h3>Music App</h3>
-                        <p>There are not many apps that can filter current most popular Songs.So we present you Music-Z
-                            which gives brand new songs in your finger tips Music-Z brings you top 50 most popular Music
-                            Video on Youtube . It searches through entire youtube database and sorts out the top 50
-                            recent most popular songs. On a single touch of your finger , you can play these songs and
-                            watch videos.</p>
-                        <p>Download it from play store to explore the features of this App</p>
-                        <a href="https://play.google.com/store/apps/details?id=com.yourtube.adnan.yourtube"
-                            target="_blank"><i class="fa-solid fa-up-right-from-square"></i></a>
-                    </div>
-                </div>
-            </div>
-            <a href="https://play.google.com/store/apps/developer?id=PriEm" target="_blank" class="btn">See more</a>
-        </div>
-    </div>
-
-
-    <!-----------------contact------------>
-    <div id="contact">
-        <div class="container">
-            <div class="row">
-                <div class="contact-left">
-                    <h1 class="sub-title">Contact Me</h1>
-                    <p><i class="fas fa-paper-plane"></i>prince.cse.13@gmail.com</p>
-                    <p><i class="fas fa-phone-square-alt"></i>+8801916679932</p>
-                    <div class="social-icons">
-                        <a href="https://www.linkedin.com/in/md-mahedi-hasan-prince" target="_blank"><i
-                                class="fab fa-linkedin"></i></a>
-                        <a href="https://www.facebook.com/prince00svn" target="_blank"><i
-                                class="fab fa-facebook"></i></a>
-                        <a href="https://wa.me/8801916679932" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                        <a href="https://drive.google.com/file/d/13XaOMThhbaQPFXw0FP_IKpaxZx9svYEE/view?usp=sharing"
-                            target="_blank"><i class="fab fa-instagram"></i></a>
-                    </div>
-                    <a href="images/MD_MAHEDI_HASAN_CV.pdf" download class="btn btn2">Download CV</a>
-                </div>
-                <div class="contact-right">
-                    <form name="submit-to-google-sheet">
-                        <input type="text" name="Name" placeholder="Your Name" required>
-                        <input type="email" name="Email" placeholder="Your Email" required>
-                        <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
-                        <button type="submit" class="btn btn2">submit</button>
-                    </form>
-                    <span id="msg"></span>
-                </div>
-            </div>
-        </div>
-        <div class="copyright">
-            <p>© 2026 <a href="https://play.google.com/store/apps/developer?id=PriEm" target="_blank"><img
-                        src="images/logo.png" class="logo_copyright"></a>. All Rights Reserved.</p>
-        </div>
-    </div>
-
-
-
-
-    <script>
-        // Typing animation for designation
-        const typingText = document.getElementById('typing-text');
-        const designation = 'Senior Software Engineer';
-        let charIndex = 0;
-
-        function typeEffect() {
-            if (charIndex < designation.length) {
-                typingText.textContent += designation.charAt(charIndex);
-                charIndex++;
-                setTimeout(typeEffect, 100);
-            } else {
-                // Add blinking cursor after typing is complete
-                typingText.style.borderRight = '2px solid var(--accent-cyan)';
-                setInterval(() => {
-                    typingText.style.borderRight = typingText.style.borderRight === '2px solid var(--accent-cyan)'
-                        ? '2px solid transparent'
-                        : '2px solid var(--accent-cyan)';
-                }, 500);
-            }
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
         }
+      });
+    }, { threshold: .12 });
+    document.querySelectorAll('.reveal').forEach(element => revealObserver.observe(element));
 
-        // Start typing after a short delay
-        setTimeout(typeEffect, 500);
-    </script>
-
-    <script>
-        var tablinks = document.getElementsByClassName("tab-links");
-        var tabcontents = document.getElementsByClassName("tab-contents");
-
-        function opentab(tabname) {
-            for (tablink of tablinks) {
-
-                tablink.classList.remove("active-link");
-            }
-            for (tabcontent of tabcontents) {
-                tabcontent.classList.remove("active-tab");
-            }
-            event.currentTarget.classList.add("active-link");
-            document.getElementById(tabname).classList.add("active-tab");
-
-        }
-
-    </script>
-
-    <script>
-        var sidemenu = document.getElementById("sidemenu");
-        function openmenu() {
-            sidemenu.style.right = "0";
-        }
-        function closemenu() {
-            sidemenu.style.right = "-200px";
-
-        }
-    </script>
-
-    <script>
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbzrOTYgehsm60HIG3Pf4rsqGLouyFmnmo9nAIztNPZQZooOfiYMlLY2CaM98ShiVTHnNQ/exec'
-        const form = document.forms['submit-to-google-sheet']
-        const msg = document.getElementById("msg")
-
-        form.addEventListener('submit', e => {
-            e.preventDefault()
-            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-                .then(response => {
-                    msg.innerHTML = "Message Sent Successfully"
-                    setTimeout(() => {
-                        msg.innerHTML = ""
-                    }, 7000)
-                    form.reset()
-                })
-
-                .catch(error => console.error('Error!', error.message))
-        })
-    </script>
-
+    const sections = [...document.querySelectorAll('main section[id]')];
+    const sectionObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        navItems.forEach(item => item.classList.toggle('active', item.getAttribute('href') === `#${entry.target.id}`));
+      });
+    }, { rootMargin: '-35% 0px -55%', threshold: 0 });
+    sections.forEach(section => sectionObserver.observe(section));
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
-
-<script src="https://kit.fontawesome.com/6cd14c1ab4.js" crossorigin="anonymous"></script>
-<html>
+</html>
